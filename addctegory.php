@@ -14,19 +14,31 @@ if (isset($_POST['addCategorybtn'])) {
 	//Check for empty fields
 	if (empty($_POST['category'])) {
 		echo "<script type='text/javascript'>
-    				alert('Please complete all fields');
+    				alert('Please enter the Category');
     				</script>";
 		//exit();
 	} else {
 		//Create short variable and filter
-		$category = filter_var($_POST['category'], FILTER_SANITIZE_STRING);
+		$category = $_POST['category'];
 		
 		//insert the questions
 		$values = array($category);
 		$db->insert($table_name, $fields, $values);
-	}
+
+		if($db)
+	        {
+	            echo $a; /*"<script type='text/javascript'>
+	    				alert('Added Successfully');
+	    				</script>";*/
+
+	        }else {
+		            echo "<script type='text/javascript'>
+		    				alert('System Error');
+		    				</script>";
+		        }
+			}
 }
-// insert function:
+// select function:
 $fields = array("");
 $where  = array("");
 $result = $db->select($table_name, $fields, $where);
@@ -41,6 +53,7 @@ if (isset($_GET['id'])) {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,19 +80,25 @@ if (isset($_GET['id'])) {
 
 	});
 	</script>
-
+	
 </head>
 <body>
+
+$a= "<script type='text/javascript'>
+	    				alert('Added Successfully');
+	    				</script>";
 	<div class="header">
 		<div class="hedmain">
 	<div class="reg">
-		<li class="regmode">Hii USER</li>
+		<li class="regmode"><a href='logout.php'>logout</a></li>
 	</div>
-	<div class="navg">
+	<div class="navg">	
 				<ul >
-					<li>HOME</li>
-					<li>FEATURES</li>
-					<li><a href="#contact">CONTACT US</a></li>
+					<li><a href="addctegory.php">ADD CATEGORY</a></li>
+					<li><a href="addquestion.php">OPTION QUESTIONS</a></li>
+					<li><a href="multichoice.php">MULTI QUESTIONS</a></li>
+					<li><a href="obj.php">ONE WORD QUESTIONS</a></li>
+
 				</ul></div>
 	<div class="logo">
 		<img src="image/logo.png" alt="" class="logo">
@@ -95,7 +114,7 @@ if (isset($_GET['id'])) {
 		<ul>
 			<li >
 				<h3 align="left"> ADD category</h3>
-				<table align="center" width="100%" cellpadding="10" cellspacing="5" border="0">
+				<table align="center" width="100%" cellpadding="10" cellspacing="5" border="0"> 
 				<tr>
 				<td>Enter Category Name</td>
 				<td><input type="text" name="category"></td>
@@ -118,24 +137,25 @@ if (isset($_GET['id'])) {
 			<?php
 			//show list view
 			$i = 1;
-			foreach ($result as $key => $value) {?>
+			foreach ($result as $key => $value)
+				{
+					$cat = $value['category'];
+					//var_dump($cat);
+
+					//to display programming languages in the browser
+					$category_echo = htmlspecialchars($cat, ENT_QUOTES);
+				?>
+					
 			<tr>
-			<td align="center"><?php echo $i;?></td>
-			<td align="center"><?php echo $value['category'];//show language category ?></td>
+				<td align="center"><?php echo $i;?></td>
+				<td align="center"><?php echo $category_echo;//show language category ?></td>
 
-			<td align="center"><a name="delete" <?php echo "href=\"?id=".$value['catid']."\"";?>>Delete</a></td>
-
+				<td align="center"><a name="delete" <?php echo "href=\"?id=".$value['catid']."\"";?>>Delete</a></td>
 
 			</tr>
-	<?php $i++;}?>
-
-
+			<?php $i++;}?>
 		</table>
 		</form>
-
-
-
-
 
 </body>
 </html>

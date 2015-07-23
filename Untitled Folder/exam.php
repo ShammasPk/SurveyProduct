@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,15 +48,33 @@
 		</div>
 	</div>
 	<div class="content">
-	<div class="view">
-		<ul>
-			<li><h2> your result</h2> </li>
+	<div class="contentview">
+	<div class="img">
+		
+			<div class="regbt"><h2>Click Register</h2> </div>
 
-		</ul>
-		<div class="mark">
-	
+		
+	</div>
 	</div>
 
+	<div class="popup">
+			<div class="regform">
+			<div class="closebt">X</div>
+			<form method="post" action="test.php">
+					<ul>
+						<li class="l1"><label>Name</label>
+						<input type="text" name="name" id="name"></li>
+						<li class="l2"><label>Email</label>
+						<input type="text" name="email" id="email"></li>
+						<li class="l3"><label>Mobile</label>
+						<input type="text" name="phone" id="phone"></li>
+						<li><button type="" class="button" name="Register">Submit</button></li>
+					</ul>
+		
+					
+				</form>
+				
+			</div>
 		</div>
 		<div class="footer">
 		<div class="addres">
