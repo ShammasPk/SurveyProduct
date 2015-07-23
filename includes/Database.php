@@ -106,6 +106,7 @@ class Database {
 
 
 		$query = mysqli_query($this->condb, $select);
+		//var_dump($qury);
 		if ($query === FALSE) {
 			return user_error($this->condb->error);
 		}
@@ -220,7 +221,7 @@ class Database {
 		
 	}
 
-	public function adminselect($table,$field,$condition)
+	public function adminselect($table,$field)
 	{
 		$set='';
 		if( $field!=null)
@@ -228,20 +229,22 @@ class Database {
 			$field=implode(',',$field);
  			$set.=" $field";
 		} 
-		if($condition!=null){
-
-		$condition=implode(',',$condition);
+		//var_dump(array($condition));
+		/*if(is_array($condition)){
+		$where=implode(',',$condition);
 		}
-		$sql="SELECT $set FROM $table WHERE $condition";
-		//var_dump($sql);
+		else
+			$where=$condition;*/
+		$sql="SELECT $set FROM $table";
 		$result=mysqli_query($this->condb,$sql);
+		//var_dump($sql);
 		if ($result == false) 
 		{
-			trigger_error($this->db->error);
+			trigger_error($this->condb->error);
 		}
 		//return ;
 			$array=array();
-			
+		//var_dump(mysqli_fetch_array($result));	
     	while($row=mysqli_fetch_array($result) )
 		{
 

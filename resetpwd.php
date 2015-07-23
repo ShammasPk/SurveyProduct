@@ -1,30 +1,65 @@
  <?php  
- require_once('includes/Database.php');
+ require_once ('includes/Database.php');
 
-$conn = new database ("localhost","root","admin","survey");
+error_reporting(-1);
+ini_set('display_errors', 'On');
+
+//connect to the database
+$db= new Database('localhost', 'root', 'admin', 'survey');
 if(!empty($_POST)){
     $username=$_POST['login'];
-    $password1=$_POST['password1'];
-    $password2=$_POST['password2'];
+    $Oldpassword=md5($_POST['Oldpassword']);
+    $password1=md5($_POST['password1']);
+    $password2=md5($_POST['password2']);
     $table='admin';
     $field=array('UserName','Password');
     $where="UserName='$username'";
-    $values=array($_POST['login'],$_POST['password1']);
-    if ($password1==$password2) {
-        $update=$conn->adminupdate($table,$field,$where,$values);
+    //$condition="UserName='$username'";
+    $values=array($_POST['login'],md5($_POST['password1']));
+    //var_dump($values);
+    $select=$db->adminselect($table,$field);
+		var_dump($select);
+		foreach ($select as $key => $value) {
+			foreach ($value as $key => $value) {
+				// var_dump($select);
+				/*if ($key=="UserName" and is_string($key) ) {
+					$username=$value;
+					//var_dump($username);
+				}*/
+				if( $key=="Password" and is_string($key)){
+					$psw=$value;
+				}
+			}
+   
+    /*$select=$conn->prepare("SELECT Password FROM $table WHERE UserName='$username'");
+    $result=mysqli_query($select);
+    var_dump($result);*/
+    if ($Oldpassword==$psw) {
+    	
+   		if ($Oldpassword!=$password1) {
+    		if ($password1==$password2) {
+        		$update=$db->adminupdate($table,$field,$where,$values);
        // var_dump($update);
-        if ($update) {
-        	header("location:admin.php");
-            $msg="update successs full";
-        }
-        else
-        {
-            $erorr="update not successs";
-        }
+        		if ($update) {
+        		header("location:admin.php");
+            		$msg="update successs full";
+       			}
+        		else
+        		{
+            		$erorr="update not successs";
+        		}
+   			}else
+        		$error="Please Specify a Password Confirmation";
+    	}else{
+    		$error="Oldpassword and new password is equal";
     }
-    else
-        $error="Please Specify a Password Confirmation";
 
+    }else{
+    	$error="Oldpassword password is incorrect";
+    }
+
+
+}
 }
  ?>
 <!DOCTYPE html>
@@ -44,9 +79,13 @@ if(!empty($_POST)){
 		<form method="post" action="">
 			<div class="login">
 				<h1> Reset Password</h1>
+				
 					
 						<p>
 							<input type="text" placeholder="Username" value="" name="login" required>
+						</p>
+						<p>
+							<input type="password" placeholder="Oldpassword" value="" name="Oldpassword" required>
 						</p>
 							<p>
 								<input type="password" placeholder="Password" value="" name="password1" required>
@@ -57,10 +96,10 @@ if(!empty($_POST)){
 							
 							<p class="submit">
 								
-								<p class="error"><?php
+								<?php
     								if(isset($error))
       									 echo $error;
-    							?></p>
+    							?>
 							</p class="bt">
 								<input type="submit" value="submit" name="commit" >
 								<img src="image/logo.png" alt="" class="psy" y-repeat>
@@ -68,12 +107,6 @@ if(!empty($_POST)){
 
 	</div>
 		<div class="login-help">
-		<p>
-				
-		
-				<a href="admin.php">back to login</a>
-			</p>
-			
 		</div>
 		</form>
 		

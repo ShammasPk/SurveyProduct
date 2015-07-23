@@ -9,7 +9,9 @@ ini_set('display_errors', 'On');
 $db         = new Database('localhost', 'root', 'admin', 'survey');
 $table_name = "questionCategory";
 $fields     = array("category");
-
+session_start();
+//var_dump($_SESSION['user_name']);
+if (!empty($_POST)) {
 if (isset($_POST['addCategorybtn'])) {
 	//Check for empty fields
 	if (empty($_POST['category'])) {
@@ -27,9 +29,9 @@ if (isset($_POST['addCategorybtn'])) {
 
 		if($db)
 	        {
-	            echo $a; /*"<script type='text/javascript'>
+	            echo  "<script type='text/javascript'>
 	    				alert('Added Successfully');
-	    				</script>";*/
+	    				</script>";
 
 	        }else {
 		            echo "<script type='text/javascript'>
@@ -37,6 +39,8 @@ if (isset($_POST['addCategorybtn'])) {
 		    				</script>";
 		        }
 			}
+		
+
 }
 // select function:
 $fields = array("");
@@ -51,6 +55,13 @@ if (isset($_GET['id'])) {
 	$db->delete($table_name, 'catid='.$id);
 	header("Location:addctegory.php");
 }
+
+}elseif(isset($_SESSION['user_name']))
+	 		{
+	 		//header("location:addctegory.php");
+	}
+	else
+		header("location:admin.php");
 
 ?>
 
@@ -84,9 +95,9 @@ if (isset($_GET['id'])) {
 </head>
 <body>
 
-$a= "<script type='text/javascript'>
+<!-- $a= "<script type='text/javascript'>
 	    				alert('Added Successfully');
-	    				</script>";
+	    				</script>"; -->
 	<div class="header">
 		<div class="hedmain">
 	<div class="reg">
