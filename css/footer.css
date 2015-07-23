@@ -1,0 +1,99 @@
+.footer{
+	width:100%;
+	height:150px;
+	background-color: #008a67;
+	
+}
+.footer-details
+{
+	width: 400px;
+	margin: 0 auto;
+	
+	
+}
+.site-details
+{
+	width: 100%;
+	margin: 0 auto;
+	border-top: 1px solid #999;
+	padding: 1% 0;
+	text-align:center;
+}
+	footer p
+	{
+		font-size: 10pt;
+		text-align: center;
+		margin: 0;
+	}
+.social-links
+{
+	display: inline-block;
+	list-style: none;
+	margin: 0;
+	padding: 2px;
+	margin-bottom: 2%;
+	margin: 14px 103px 1%;
+
+}
+	.social-links li
+	{
+		float: left;
+		padding: 0;
+		margin-left: 5px;
+		cursor: pointer;
+	}
+		.social-links li a
+		{
+			display: block;
+			width: 32px;
+			height: 32px;
+			background-position: center;
+			background-repeat: no-repeat;
+			-webkit-background-size: 100%;
+			background-size: 100%;
+			transition: opacity 0.5s ease-in-out;
+		}
+		.social-links li:hover a
+		{
+			opacity: 0.6;
+		}
+		.social-links li a.facebook
+		{
+			background-image: url(../image/facebook2.png);
+		}
+		.social-links li a.twitter
+		{
+			background-image: url(../image/twitter2.png);
+		}
+		.social-links li a.linkedin
+		{
+			background-image: url(../image/linkedin2.png);			
+		}
+		.social-links li a.gplus
+		{
+			background-image: url(../image/google2.png);			
+		}
+
+.widgettitle{
+
+	width: 20%;
+	height: 172px;
+	background-color: #FFF;
+	
+	float: right;
+}
+.social{
+
+	width: 40%;
+	height: 30%;
+	border: 1px solid black;
+	background-color: #fff;
+	float: left;
+
+} 
+
+.cat_ft{
+	padding-top: 50px;
+	color: #aaa;
+	border-top-width: 0px;
+}

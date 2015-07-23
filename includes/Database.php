@@ -82,7 +82,8 @@ class Database {
 		//var_dump($insert);
 	}
 
-	public function select($table, $fields, $where) {
+	public function select($table, $fields, $where) 
+	{
 		$count  = count($fields);
 		$fields = implode(',', $fields);
 		$select = "SELECT ";
@@ -91,15 +92,58 @@ class Database {
 			$select .= "* FROM ".$table;
 		} else {
 			$select .= $fields." FROM ".$table;
-		}
+		
 
-		if ($where = null) {
-			$select .= " WHERE ".$where[0]."= ";
-			if (is_string($where[1])) {
-				$select .= "'".$where[1]."'";
+			if ($where != null) {
+				$select .= " WHERE ".$where[0]."=";
+				if (is_string($where[1]))
+				{
+					$select .= "'".$where[1]."'";
+				}
+
 			}
-
 		}
+
+
+		$query = mysqli_query($this->condb, $select);
+		if ($query === FALSE) {
+			return user_error($this->condb->error);
+		}
+
+		$recs = array();
+		while (($rec = mysqli_fetch_array($query)))
+		array_push($recs, $rec);
+		//var_dump($recs);
+		//echo $rec;
+		return $recs;
+		
+	}
+
+	public function random_select($table, $fields, $where) {
+		$count= count($fields);
+		$fields=implode(',',$fields);
+		$select="SELECT ";
+
+		if($fields==null)
+		{
+			$select.="* FROM " .$table;
+		}
+		else
+		{
+			$select.=$fields ." FROM ".$table;
+		}
+
+		if($where!=null)
+		{
+			$select.=" WHERE ".$where[0]. "= ";
+			if (is_string($where[1]))
+			{
+				$select.= "'" .$where[1]. "'";
+			}
+		
+		}
+		$select .=" ORDER BY RAND() LIMIT 5";
+
 
 		//var_dump($select);
 
@@ -133,7 +177,6 @@ class Database {
 		$fields = implode(',', $fields);
 		$update .= " WHERE ".$where;
 
-		var_dump($update);
 
 		$type = "";
 		for ($i = 0; $i < $count; $i++) {
@@ -146,6 +189,7 @@ class Database {
 		}
 		/* var_dump($type);
 		var_dump($values);*/
+		//var_dump($update);
 
 		$stmt = $this->condb->prepare($update);
 		//  $type='sss';
@@ -156,10 +200,8 @@ class Database {
 		call_user_func_array(array(&$stmt, 'bind_param'), $param);
 		//$stmt->bind_param($type, $values);
 		$stmt->execute();
-		//var_dump($s);
-		//print_r($fields);
-		// echo($i);
-		// echo($fields);
+		return true;
+
 	}
 
 	public function delete($table, $where) 
@@ -175,6 +217,75 @@ class Database {
 				return true;
 			}
 			return false;
+		
+	}
+
+	public function adminselect($table,$field,$condition)
+	{
+		$set='';
+		if( $field!=null)
+		{
+			$field=implode(',',$field);
+ 			$set.=" $field";
+		} 
+		if($condition!=null){
+
+		$condition=implode(',',$condition);
+		}
+		$sql="SELECT $set FROM $table WHERE $condition";
+		//var_dump($sql);
+		$result=mysqli_query($this->condb,$sql);
+		if ($result == false) 
+		{
+			trigger_error($this->db->error);
+		}
+		//return ;
+			$array=array();
+			
+    	while($row=mysqli_fetch_array($result) )
+		{
+
+			array_push($array, array_values($row));
+			//var_dump($array);
+			return $array;
+			
+    		/*echo "<br><tr><td>". "  </td><td>" . $row["UserName"]. "   </td><td>" . $row["email"]."   </td><td>" .$row["Password"] . "<br></td></tr>";*/
+		}
+	}
+	public function adminupdate($table, $field,$where,$values){
+		$sql="UPDATE ".$table ." SET " ;
+		$set = '';
+		$x=1;
+		$cnt=count($field);
+		for ($i=0;$i < $cnt; $i++){
+			$sql.=$field[$i]."=?";
+			if($i!=$cnt-1)
+			{
+				$sql.=',';
+			}
+		}
+		$sql.=" WHERE ". $where;
+		//var_dump($sql);
+		$type="";
+
+		for ($i=0; $i <$cnt ; $i++) { 
+			if (is_string($values[$i]))  {
+				$type.="s";
+			}else
+				$type.="i";
+		}
+		//var_dump($sql);
+		$update=$this->condb->prepare($sql); 
+			 //var_dump($update);
+		$param[0]=&$type;
+		foreach ($values as $key => $field) {
+			$param[$key+1]=&$values[$key];
+		}
+		call_user_func_array(array(&$update,'bind_param'), $param);
+
+		
+		$update->execute();
+		return true;
 		
 	}
 }
