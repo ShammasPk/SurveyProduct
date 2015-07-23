@@ -1,5 +1,5 @@
 <?php
-/*
+
 require_once('includes/Database.php');
 
 
@@ -8,18 +8,26 @@ require_once('includes/Database.php');
 	$fields=array("name","email","phone");
 
 if (isset($_POST['register'])) {
-	$name=$_POST['name'];
-	$email=$_POST['email'];
-	$phone=$_POST['phone'];
+	$name= filter_var($_POST['name'] ,FILTER_SANITIZE_STRING);
+	$email= filter_var($_POST['email'] ,FILTER_SANITIZE_EMAIL);
+	$phone= filter_var($_POST['phone'] ,FILTER_SANITIZE_STRING);
 	if($name=='' || $email=='' || $phone=='')
 	{
 		header("Location:exam.php");
-	}else{
+	}else
+	{
 	$values=array($name, $email, $phone);
 	$db->insert('user', $fields, $values);
+
 	}
+	if($db)
+	        {
+	            header("Location:category.php");
+	        }
 	
-}*/
+}
+
+
 
 ?>
 <!DOCTYPE html>
@@ -85,10 +93,10 @@ if (isset($_POST['register'])) {
 	<div class="popup">
 		<div class="regform">
 			<div class="closebt">X</div>
-			<form method="post" action="choosecat.php">
+			<form method="post" action="">
 					<ul>
 						<li><label>Name</label>
-						<input type="text" required name="name"></li>
+						<input type="text"required name="name"></li>
 						<li><label>Email</label>
 						<input type="email" required name="email"></li>
 						<li><label>Mobile</label>

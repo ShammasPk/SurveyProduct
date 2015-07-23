@@ -1,3 +1,31 @@
+<?php
+
+    require_once ('includes/Database.php');
+
+    error_reporting(-1);
+    ini_set('display_errors', 'On');
+
+    //connect to the database
+    $db         = new Database('localhost', 'root', 'admin', 'survey');
+    $table_name = "questionCategory";
+    // select function:
+    $fields = array("");
+    $where  = array("");
+    $result = $db->select($table_name, $fields, $where);
+    //var_dump($result);
+
+
+    /*if (isset($_GET['category'])) {
+    
+    var_dump($_GET['category']);
+    //delete function:
+    // $category = ($_GET['category']);
+    
+    }*/
+    
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -47,12 +75,26 @@
 			<div class="container_main">
 			<section >
 				<div class="hi-icon-wrap hi-icon-effect-3 hi-icon-effect-3a">
+				<form method="POST" action="test1.php">
 				<ul>
+				<?php
+                            //show list view
+                            $i = 1;
+                            foreach ($result as $key => $value)
+                                {
+                                    $cat = $value['category'];
+                                    //var_dump($cat);
+                                    //to display programming languages in the browser
+                                    $category_echo = htmlspecialchars($cat, ENT_QUOTES);
+                                ?>
 				<li>
-					<a href="test1.php" class="hi-icon hi-icon-images">PHP</a></li>
-					<li><a href="test1.php" class="hi-icon hi-icon-pencil">ASP</a> </li>
+					<a class="hi-icon hi-icon-images" name="selctcat" <?php echo "href=\"exampage.php?category=".$value['category']."\"";?>>
+					<?php echo $category_echo;//show language category ?></a>
+				</li>
 					
-				</ul>
+					<?php $i++;}?>
+				</form>>
+					</ul>
 
 
 				</div>
