@@ -3,7 +3,6 @@
  ini_set('display_errors', 'On');
 
  require_once ('includes/Database.php');
- require_once ('randomselect.php');
 
 
 //connect to the database
@@ -21,63 +20,49 @@
 		 foreach ($option as $key => $value)
 		 {
 		 	
-		 	$answer="";
+		 	$answer="dftdsf";
 		 	if(isset($_POST['a'.$i]))
 		 		$answer=$_POST['a'.$i];
 		 	if ($value['answer']==$answer) {
 		 		$score++;
-		 	var_dump($answer);
+		 	echo $answer;
 		 	}
 		 	 
 		 	$i++;
 		 }
 
-		 $m=1;
+		 $i=1;
 		 foreach ($multi as $key => $value) 
 		 {
 		 	$answer1="";
-		 	$answer2="";
 		 	if(isset($_POST['b'.$i]))
 		 		$answer1=$_POST['b'.$i];
-		 		$answer2=$_POST['b'.$i];
-		 	if (($value['ansCho3']==$answer1) ||
-		 		($value['ansCho4']==$answer2)) {
+		 	if ($value['ansCho3']==$answer1){
+		 		//($value['ansCho4']==$answer2)) 
 		 		$score++;
-		 	}
+			}
 		 	 
-		 	$m++;
+		 	$i++;
+		}
 
-		 }
-		 $l=1;
+		 /*$i=1;
 		 foreach ($obj as $key => $value) 
 		 {
-		 	$answer="";
+		 	$answerobj="";
 		 	if(isset($_POST['c'.$i]))
-		 		$answer=$_POST['answerobj'];
+		 		$answerobj=$_POST['answerobj'];
 		 	{
 		 		$score++;
 		 	}
 		 	 
-		 	$l++;
+		 	$i++;
 
-		 }
+		 }*/
+		 echo $score;
 	}
 
 
-	/*if (isset($_POST['sendemail']))
-	{
-		//Check for empty fields
-	if (empty($_POST['feedback'])) {
-		echo "<script type='text/javascript'>
-    				alert('Please enter your feedback');
-    				</script>";
-		//exit();
-	} else
-		{
-			$feedback = filter_var($_POST['category'], FILTER_SANITIZE_STRING);
-			 //if (!preg_match("/^[a-zA-Z ]*$/",$feedback)) 
-     	}
-	}*/
+	
 
 	
  

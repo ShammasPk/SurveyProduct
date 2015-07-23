@@ -88,6 +88,7 @@
 	$where=array("");
 	$result=$db->select('addquestion',$fields,$where);
 	//var_dump($result);
+	
 	//delete function
 	  if (isset($_GET['id']))
     {

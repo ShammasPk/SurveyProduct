@@ -27,9 +27,9 @@ if (isset($_POST['addCategorybtn'])) {
 
 		if($db)
 	        {
-	            echo $a; /*"<script type='text/javascript'>
+	            echo "<script type='text/javascript'>
 	    				alert('Added Successfully');
-	    				</script>";*/
+	    				</script>";
 
 	        }else {
 		            echo "<script type='text/javascript'>
@@ -84,9 +84,9 @@ if (isset($_GET['id'])) {
 </head>
 <body>
 
-$a= "<script type='text/javascript'>
+<!-- $a= "<script type='text/javascript'>
 	    				alert('Added Successfully');
-	    				</script>";
+	    				</script>"; -->
 	<div class="header">
 		<div class="hedmain">
 	<div class="reg">

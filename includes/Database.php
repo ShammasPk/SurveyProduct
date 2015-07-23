@@ -142,7 +142,7 @@ class Database {
 			}
 		
 		}
-		$select .=" ORDER BY RAND() LIMIT 5";
+		$select .=" ORDER BY RAND() LIMIT 2";
 
 
 		//var_dump($select);

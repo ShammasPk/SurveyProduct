@@ -33,9 +33,37 @@
 	$where=array("category",$category);
 	$obj=$db->random_select('addobj',$fields,$where);
 	//var_dump($obj);	
+ 	
+ 	/*if (isset($_POST['finishbtn'])){
+				$answer=$_POST['a'.$i];
+				$fields=array("answer");
+				$values=array($answer);
+				$db->insert('addobj', $fields, $values);
+			}*/
 
+	/*if (isset($_POST['finishbtn'])) 
+	{
+	//Check for empty fields
+		if 	((empty($_POST['a'.$i]) ||
+			(empty($_POST['b'.$m]) ||
+			(empty($_POST['c'.$l])) 
+
+		    { echo "<script type='text/javascript'>
+	    				alert('leave exam');
+	    				</script>";
+				//exit();
+			} else {
+					//Create short variables
+					$answer = $_POST['a'.$i];
+					$multi = $_POST['b'.$m];
+					$obj = $_POST['c'.$l];
+					
+					//insert the questions
+					$values = array($option, $multi, $obj);
+					$db->insert('adminview', $fields, $values);
 	
-
+					}
+		}*/
  ?>
 
 
@@ -77,7 +105,8 @@
 
 		<form method="post" action="result.php">
 		<ul>
-		<?php 
+		<?php
+			$no=1; 
 			$i=1;
 		 foreach ($option as $key => $value)
 		 	{
@@ -99,7 +128,7 @@
 		   
 		 	?>
 			<li >
-				<h3><?php echo $i.".".$question_echo;?></h3>
+				<h3><?php echo $no.".".$question_echo;?></h3>
 				<table align="center" width="90%" cellpadding="5" cellspacing="5" border="0" class="table1"> <tr>
 					<td><input id="rd" type="radio" name=<?php echo 'a'.$i;?> value=<?php echo $opt1_echo;?>>
 						<label for="rd"><?php echo $opt1_echo;?></label>	</td>
@@ -116,10 +145,10 @@
 				</tr>
 				</table>
 			</li>
-			<?php $i++;}?>
+			<?php $no++; $i++;}?>
 
 			<?php 
-			$m=1;;
+			$i=1;;
 		 	foreach ($multi as $key => $value)
 		 		{
 		 			$question = $value['question'] ." ?";
@@ -137,29 +166,28 @@
 					    //var_dump($key);
 		 		?>
 			<li >
-				<h3><?php echo $i.".".$question_echo;?> </h3>
+				<h3><?php echo $no.".".$question_echo;?> </h3>
 				<table align="center" width="90%" cellpadding="5" cellspacing="5" border="0"
 				class="table1">			
-					<td><input id="a" type="checkbox" name=<?php echo 'b'.$m;?> value=<?php echo $c1_echo ;?>>	
+					<td><input id="a" type="checkbox" name=<?php echo 'b'.$i;?> value=<?php echo $c1_echo ;?>>	
 						<label for="a"><?php echo $c1_echo ;?></label>	</td>
-					<td><input  id="b" type="checkbox" name=<?php echo 'b'.$m;?> value=<?php echo $c2_echo ;?>>	
+					<td><input  id="b" type="checkbox" name=<?php echo 'b'.$i;?> value=<?php echo $c2_echo ;?>>	
 						<label for="b"><?php echo $c2_echo ;?></label>	</td>
 
 				</tr>
 				<tr>
-					<td><input id="c" type="checkbox" name=<?php echo 'b'.$m;?> value=<?php echo $c3_echo ;?>>	
+					<td><input id="c" type="checkbox" name=<?php echo 'b'.$i;?> value=<?php echo $c3_echo ;?>>	
 						<label for="c"><?php echo $c3_echo ;?></label>	</td>
-					<td><input  id="d" type="checkbox" name=<?php echo 'b'.$m;?> value=<?php echo $c4_echo ;?>>
+					<td><input  id="d" type="checkbox" name=<?php echo 'b'.$i;?> value=<?php echo $c4_echo ;?>>
 						<label for="d"><?php echo $c4_echo ;?></label>	</td
 
 				</tr>
 				</table>
 			</li>
-			<?php $m++; $i++;}?>
+			<?php $no++; $i++;}?>
 
 			<?php
-			$l=1;
-			$i;
+			$i=1;
 		 	foreach ($obj as $key => $value)
 		 		{
 		 			$question = $value['question'] ." ?";
@@ -167,15 +195,15 @@
 					$question_echo = htmlspecialchars($question, ENT_QUOTES);
 		 		?>
 			<li >
-				<h3><?php echo $i.".".$question_echo;?></h3>
+				<h3><?php echo $no.".".$question_echo;?></h3>
 				<table align="center" width="90%" cellpadding="5" cellspacing="5" border="0" class="table1"> <tr>
-					<td><textarea name=<?php echo 'c'.$l;?>></textarea> <label for="q3"> </label>	</td>
+					<td><textarea name=<?php echo 'c'.$i;?>></textarea> <label for="q3"> </label>	</td>
 					
 				</tr>
 		
 				</table>
 			</li>
-			<?php $l++; $i++;}?>
+			<?php $no++; $i++;}?>
 		
 			
 		<li style="list-style:none;"><input type="submit" name="finishbtn" value="finish" class="button" style="margin-left:40%;"></li>
