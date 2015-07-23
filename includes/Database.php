@@ -245,7 +245,11 @@ class Database {
     	while($row=mysqli_fetch_array($result) )
 		{
 
+<<<<<<< HEAD
+			array_push($array, array_values($row));
+=======
 			array_push($array,$row);
+>>>>>>> 7913d9e02054cfa04e2813377b32ad05bdc424f7
 			//var_dump($array);
 			return $array;
 			
