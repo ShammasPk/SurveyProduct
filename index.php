@@ -1,5 +1,5 @@
-<!--<?php
-
+<?php
+/*
 require_once('includes/Database.php');
 
 
@@ -19,9 +19,9 @@ if (isset($_POST['register'])) {
 	$db->insert('user', $fields, $values);
 	}
 	
-}
+}*/
 
-?>-->
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

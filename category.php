@@ -19,7 +19,7 @@
 		<div class="container">
 			<!-- Top Navigation -->
 			<div class="psybo-top clearfix">
-				<a class="psybo-icon psybo-icon-prev" href=""><span>Back to Home</span></a>
+				<a class="psybo-icon psybo-icon-prev" href="index.php"><span>Back to Home</span></a>
 				<span class="right"><a class="psybo-icon psybo-icon-drop" href=""><span>User Me !!</span></a></span>
 			</div>
 			
@@ -49,8 +49,8 @@
 				<div class="hi-icon-wrap hi-icon-effect-3 hi-icon-effect-3a">
 				<ul>
 				<li>
-					<a href="#set-3" class="hi-icon hi-icon-images">PHP</a></li>
-					<li><a href="#set-3" class="hi-icon hi-icon-pencil">ASP</a> </li>
+					<a href="test1.php" class="hi-icon hi-icon-images">PHP</a></li>
+					<li><a href="test1.php" class="hi-icon hi-icon-pencil">ASP</a> </li>
 					
 				</ul>
 

@@ -19,7 +19,7 @@
 		<div class="container">
 			<!-- Top Navigation -->
 			<div class="psybo-top clearfix">
-				<a class="psybo-icon psybo-icon-prev" href=""><span>Back to Home</span></a>
+				<a class="psybo-icon psybo-icon-prev" href="index.php"><span>Back to Home</span></a>
 				<span class="right"><a class="psybo-icon psybo-icon-drop" href=""><span>User Me !!</span></a></span>
 			</div>
 
@@ -53,10 +53,10 @@
 			<section style="border-top:1px solid #ededed;">
 				
 				<h3 style="text-align:center; color:#fff">send your feedback</h3>
-				<form action="">
+				<form action="" method="post">
 					 	         <ul>	
 				          
-									<li style="float:left"><textarea name="feedback" style="width:400px;height:100px; margin-left:20%;"></textarea> <label for="q3"> </label>	</li>
+									<li style="float:left"><textarea name="feedback" style="width:400px;height:100px; margin-left:20%;" required></textarea> <label for="q3"> </label>	</li>
 				    			<li style="float:left"><input type="submit" name="email" value="send" class="button" style="margin-top:30px;" ></li>
 				
 					</ul>

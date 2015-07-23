@@ -49,61 +49,43 @@
 		
 			<!-- catogory -->
 						<div class="container_wrapper" >
-						<form>		<!--<section id="set-2">
-						<div class="container_main">
-							<h3><?php echo $i.".".$value['question'];?></h3>
-					<table align="center" width="90%" cellpadding="5" cellspacing="5" border="0"> <tr>
-						<td><input id="rd" type="radio" name=<?php echo 'a'.$i;?> value=<?php echo $value['opt1'] ;?>><label for="rd"><?php echo $value['opt1'] ;?></label>	</td>
-						<td><input  id="rd1"type="radio" name=<?php echo 'a'.$i;?> value=<?php echo $value['opt2'] ;?>>	<label for="rd1"><?php echo $value['opt2'] ;?></label>	</td>
-
-					</tr>
-				<tr>
-					<td><input id="rd2" type="radio" name=<?php echo 'a'.$i;?> value=<?php echo $value['opt3'] ;?>>	 <label for="rd2"><?php echo $value['opt3'] ;?></label>	</td>
-					<td><input  id="rd3" type="radio" name=<?php echo 'a'.$i;?> value=<?php echo $value['opt4'] ;?>> <label for="rd3"><?php echo $value['opt4'] ;?></label>	</td>
-
-				</tr>
-				</table>
-
-
-					</div>
-								<?php $i++;}?>
-
-			</section>-->
+						<form method="POST" action="final.php">
+			
 			<section id="q1" class=" set-2 ">
 						<div class="container_main">
 							<h3>1. what is different between PHP and Asp.net </h3>
 					<table align="center" width="90%" cellpadding="5" cellspacing="5" border="0"> <tr>
-						<td><input id="rd" type="radio" name=<?php echo 'a'.$i;?> value=<?php echo $value['opt1'] ;?>><label for="rd">Nothing</label>	</td>
-						<td><input  id="rd1"type="radio" name=<?php echo 'a'.$i;?> value=<?php echo $value['opt2'] ;?>>	<label for="rd1">Nothing</label>	</td>
+						<td><input id="rd" type="radio" name="" > <label for="rd">Nothing</label>	</td>
+						<td><input  id="rd1"type="radio" name="" >	<label for="rd1">Nothing</label>	</td>
 
 					</tr>
 				<tr>
-					<td><input id="rd2" type="radio" name=<?php echo 'a'.$i;?> value=<?php echo $value['opt3'] ;?>>	 <label for="rd2">Nothing</label>	</td>
-					<td><input  id="rd3" type="radio" name=<?php echo 'a'.$i;?> value=<?php echo $value['opt4'] ;?>> <label for="rd3">nothing</label>	</td>
+					<td><input id="rd2" type="radio" name="" >	 <label for="rd2">Nothing</label>	</td>
+					<td><input  id="rd3" type="radio" name=""> 		<label for="rd3">nothing</label>	</td>
 
 				</tr>
 				</table>
-
+			
 
 					</div>
-								<?php $i++;}?>
+								
 
 			</section>
 			<section id="q2" class=" set-1 ">
 						<div class="container_main">
-							<h3><?php echo $i.".".$value['question'];?> gh8kploijkp;[p ;;</h3>
+							<h3>how to change js file in php?</h3>
 				<table align="center" width="90%" cellpadding="5" cellspacing="5" border="0">			
-								<td><input id="a" type="checkbox" name=<?php echo 'b'.$i;?> value=<?php echo $value['cho1'] ;?>>	
-								<label for="a"><?php echo $value['cho1'] ;?>asdsadsa</label>	</td>
-								<td><input  id="b" type="checkbox" name=<?php echo 'b'.$i;?> value=<?php echo $value['cho2'] ;?>>	
-								<label for="b"><?php echo $value['cho2'] ;?>asdsadsa</label>	</td>
+								<td><input id="a" type="checkbox" name="" value="">	
+								<label for="a">asdsadsa</label>	</td>
+								<td><input  id="b" type="checkbox" name="" value="">	
+								<label for="b">asdsadsa</label>	</td>
 
 				</tr>
 				<tr>
-					<td><input id="c" type="checkbox" name=<?php echo 'b'.$i;?> value=<?php echo $value['ansCho3'] ;?>>	 
-					<label for="c"><?php echo $value['ansCho3'] ;?></label>asdsa	</td>
-					<td><input  id="d" type="checkbox" name=<?php echo 'b'.$i;?> value=<?php echo $value['ansCho4'] ;?>> 
-					<label for="d"><?php echo $value['ansCho4'] ;?></label>	asdsad</td>
+					<td><input id="c" type="checkbox" name="" value="">	 
+					<label for="c">ghuiy</label></td>
+					<td><input  id="d" type="checkbox" name="" value=""> 
+					<label for="d">joipkjp</label></td>
 
 				</tr>
 				</table>
@@ -113,9 +95,9 @@
 			<section id="q3" class=" set-1 ">
 									<div class="container_main">
 
-					<h3><?php echo $i.".".$value['question'];?>asdsadasd</h3>
+					<h3>why you choosing this language?</h3>
 				<table align="center" width="90%" cellpadding="5" cellspacing="5" border="0"> <tr>
-					<td><textarea name="answer"></textarea> <label for="q3"> </label>	</td>
+					<td><textarea name="answer" required></textarea> <label for="q3"> </label>	</td>
 					
 				</tr>
 		
@@ -125,9 +107,9 @@
 			<section id="q10" class=" set-2 ">
 									<div class="container_main">
 
-					<h3><?php echo $i.".".$value['question'];?>asdsadasd</h3>
+					<h3>what u mniij iniajk jakknma?</h3>
 				<table align="center" width="90%" cellpadding="5" cellspacing="5" border="0"> <tr>
-					<td><textarea name="answer"></textarea> <label for="q3"> </label>	</td>
+					<td><textarea name="answer" required></textarea> <label for="q3"> </label>	</td>
 					
 				</tr>
 		
