@@ -9,8 +9,10 @@
     $db= new Database('localhost','root','admin','survey');
     $table_name="addmulti";
     $fields=array("question","category","cho1","cho2","ansCho3","ansCho4");
+    session_start();
+    if (!empty($_POST)) {
+    	# code...
     
-
     if (isset($_POST['btnadd']))
     {
     //Check for empty fields
@@ -86,6 +88,13 @@
 		$db->delete($table_name, 'qid='.$qid);
 		header("Location:multichoice.php");
 	}
+}elseif(isset($_SESSION['user_name']))
+	 		{
+	 		//header("location:addctegory.php");
+	}
+	else
+		header("location:admin.php");
+
 
 
 

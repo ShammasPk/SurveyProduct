@@ -10,7 +10,8 @@
     $table_name="addobj";
     $fields=array("question","category");
     
-
+    session_start();
+    if (!empty($_POST)) {
     if (isset($_POST['addbtn']))
     {
     //Check for empty fields
@@ -69,6 +70,13 @@
 		$db->delete($table_name, 'qid='.$qid);
 		header("Location:obj.php");
 	}
+	}elseif(isset($_SESSION['user_name']))
+	 		{
+	 		//header("location:addctegory.php");
+	}
+	else
+		header("location:admin.php");
+
 
 
 

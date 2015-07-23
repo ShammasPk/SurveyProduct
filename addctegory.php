@@ -9,7 +9,9 @@ ini_set('display_errors', 'On');
 $db         = new Database('localhost', 'root', 'admin', 'survey');
 $table_name = "questionCategory";
 $fields     = array("category");
-
+session_start();
+//var_dump($_SESSION['user_name']);
+if (!empty($_POST)) {
 if (isset($_POST['addCategorybtn'])) {
 	//Check for empty fields
 	if (empty($_POST['category'])) {
@@ -27,7 +29,7 @@ if (isset($_POST['addCategorybtn'])) {
 
 		if($db)
 	        {
-	            echo "<script type='text/javascript'>
+	            echo  "<script type='text/javascript'>
 	    				alert('Added Successfully');
 	    				</script>";
 
@@ -37,6 +39,8 @@ if (isset($_POST['addCategorybtn'])) {
 		    				</script>";
 		        }
 			}
+		
+
 }
 // select function:
 $fields = array("");
@@ -51,6 +55,13 @@ if (isset($_GET['id'])) {
 	$db->delete($table_name, 'catid='.$id);
 	header("Location:addctegory.php");
 }
+
+}elseif(isset($_SESSION['user_name']))
+	 		{
+	 		//header("location:addctegory.php");
+	}
+	else
+		header("location:admin.php");
 
 ?>
 
